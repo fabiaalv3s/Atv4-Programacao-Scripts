@@ -34,6 +34,9 @@ class TeamController {
 
     try{
       const team = await AppDataSource.getRepository(Teams).save({ name }).catch(e => {
+      if (/(name)[\s\S]+(already exists)/.test(e.detail)){
+        return { error: 'Já existe'}
+      }
         return { error: e.message}
       });
 
