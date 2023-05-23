@@ -33,7 +33,9 @@ class TeamController {
     const { name } = req.body
 
     try{
-      const team = await AppDataSource.getRepository(Teams).save({ name })
+      const team = await AppDataSource.getRepository(Teams).save({ name }).catch(e => {
+        return { error: e.message}
+      });
 
         return res.status(200).json(team)
     }catch(e){
