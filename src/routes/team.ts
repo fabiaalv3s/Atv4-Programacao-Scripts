@@ -1,9 +1,10 @@
 import { Router } from "express";
-import { TeamController } from "../controllers";
+import TeamController from "../controllers/TeamController";
+
 const routes = Router();
 
-routes.get('/', TeamController.listTeam);
-routes.get('/:termo', TeamController.listByTermo);
+routes.get('/:termo', TeamController.getTermo);
+routes.get('/', TeamController.get);
 routes.post('/', TeamController.create);
 routes.put('/', TeamController.update);
 routes.delete('/', TeamController.delete);
